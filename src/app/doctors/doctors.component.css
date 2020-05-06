@@ -1,0 +1,9 @@
+table {
+  font-size: 3vmax;
+  width: 100vw
+}
+
+td, th {
+  padding: 1em;
+  text-align: left;
+}

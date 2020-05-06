@@ -1,0 +1,15 @@
+<h2>{{ title }}</h2>
+<table>
+  <thead>
+  <tr>
+    <th>{{ tableHeaders.name }}</th>
+    <th>{{ tableHeaders.specialty }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let doctor of doctors">
+    <td>{{ doctor.name }}</td>
+    <td>{{ doctor.specialty }}</td>
+  </tr>
+  </tbody>
+</table>
