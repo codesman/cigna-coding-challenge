@@ -5,6 +5,8 @@ import {AppComponent} from './app.component';
 import {DoctorsComponent} from './doctors/doctors.component';
 import {DoctorService} from './services/doctor.service';
 import {HttpClientModule} from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,10 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    })
   ],
   providers: [DoctorService],
   bootstrap: [AppComponent]
