@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Doctor} from '../interfaces/doctor';
+import {DoctorService} from '../services/doctor.service';
 
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',
-  styleUrls: ['./doctors.component.css']
+  styleUrls: ['./doctors.component.css'],
+  providers: [ DoctorService ]
 })
+
 export class DoctorsComponent implements OnInit {
   title = `Doctor's Hall of Fame`;
 
@@ -14,23 +17,12 @@ export class DoctorsComponent implements OnInit {
     specialty: 'Specialty',
   };
 
-  doctors: Doctor[] = [
-    {
-      id: 1,
-      name: 'Louis Pasteur',
-      specialty: 'Molecular Biology',
-    },
-    {
-      id: 2,
-      name: 'Dr. Jean-Martin Charcot',
-      specialty: 'Pathology',
-    }
-  ];
+  doctors: Doctor[];
 
-  constructor() {
+  constructor(private doctorService: DoctorService) {
   }
 
   ngOnInit(): void {
+    this.doctors = this.doctorService.doctors;
   }
-
 }

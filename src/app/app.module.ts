@@ -1,8 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { DoctorsComponent } from './doctors/doctors.component';
+import {AppComponent} from './app.component';
+import {DoctorsComponent} from './doctors/doctors.component';
+import {DoctorService} from './services/doctor.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,9 +12,11 @@ import { DoctorsComponent } from './doctors/doctors.component';
     DoctorsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DoctorService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,5 +1,5 @@
 table {
-  font-size: 3vmax;
+  font-size: calc(1em + 1vw);
   width: 100vw
 }
 
