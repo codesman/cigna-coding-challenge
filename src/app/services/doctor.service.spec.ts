@@ -1,7 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
 import {DoctorService} from './doctor.service';
-import ArrayContaining = jasmine.ArrayContaining;
 
 describe('DoctorService', () => {
   let service: DoctorService;

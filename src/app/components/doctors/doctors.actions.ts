@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {Doctor} from '../interfaces/doctor';
+import {Doctor} from '../../interfaces/doctor';
 
 export const hydrateDoctors = createAction(
   '[Doctors] Hydrate',

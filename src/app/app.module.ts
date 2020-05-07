@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {DoctorsComponent} from './doctors/doctors.component';
+import {DoctorsComponent} from './components/doctors/doctors.component';
 import {DoctorService} from './services/doctor.service';
 import {HttpClientModule} from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
