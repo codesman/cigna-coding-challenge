@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Doctor} from '../../interfaces/doctor';
 import {DoctorService} from '../../services/doctor.service';
+import {Observable, Observer, of} from 'rxjs';
+import {DoctorState} from '../../store/doctor/doctor.reducer';
+import {select, Store} from '@ngrx/store';
+import * as DoctorActions from '../../store/doctor/doctor.actions'  ;
+import {selectDoctorsList} from '../../store/doctor/doctor.selectors';
 
 @Component({
   selector: 'app-doctors',
@@ -17,12 +22,19 @@ export class DoctorsComponent implements OnInit {
     specialty: 'Specialty',
   };
 
-  doctors: Doctor[];
+  doctors$: Observable<Doctor[]>;
 
-  constructor(private doctorService: DoctorService) {
+  constructor(
+    private store: Store<DoctorState>
+  ) {
   }
 
   ngOnInit(): void {
-    this.doctors = this.doctorService.doctors;
+    this.store.dispatch(DoctorActions.loadDoctors());
+    this.loadDoctors();
+  }
+
+  loadDoctors() {
+    this.doctors$ = this.store.pipe(select(selectDoctorsList));
   }
 }

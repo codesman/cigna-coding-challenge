@@ -1,12 +1,15 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
-import {DoctorsComponent} from './components/doctors/doctors.component';
-import {DoctorService} from './services/doctor.service';
 import {HttpClientModule} from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import {StoreModule} from '@ngrx/store';
+import {CommonModule} from '@angular/common';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {DoctorsComponent} from './components/doctors/doctors.component';
+import * as fromDoctorState from './store/doctor/doctor.reducer';
+import {DoctorEffects} from './store/doctor/doctor.effects';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,18 @@ import { reducers, metaReducers } from './reducers';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    EffectsModule.forRoot([]),
     HttpClientModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    })
+    StoreModule.forRoot([]),
+    StoreModule.forFeature(
+      fromDoctorState.doctorFeatureKey,
+      fromDoctorState.reducer
+    ),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([DoctorEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [DoctorService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

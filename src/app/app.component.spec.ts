@@ -1,14 +1,24 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {Store} from '@ngrx/store';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let appComponent: AppComponent;
+  let storeSpy: jasmine.SpyObj<Store>;
+
+  beforeEach(() => {
+    const spy = jasmine.createSpyObj('Store', ['dispatch']);
+
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+      providers: [
+        AppComponent,
+        {provide: Store, useValue: spy}
+      ]
+    });
+
+    appComponent = TestBed.inject(AppComponent);
+    storeSpy = TestBed.inject(Store) as jasmine.SpyObj<Store>;
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -19,7 +29,7 @@ describe('AppComponent', () => {
   it(`should have title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual(app.title);
+    expect(app.title).toEqual('Cigna Coding Challenge');
   });
 
   it('should render title', () => {
