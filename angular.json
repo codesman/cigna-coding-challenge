@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cigna-challenge"
+    }
+  },
+  "defaultProject": "cigna-challenge",
+  "cli": {
+    "analytics": "fc1b0d9c-c220-4c89-88f2-d334b7ad4b51"
+  }
 }
